@@ -3,6 +3,7 @@
 \alias{AssetsTests}
 
 \alias{assetsTest}
+\alias{mvshapiroTest}
 
 
 \title{Testing Multivariate Asset Sets}
@@ -18,7 +19,8 @@
     The functions are:
     
     \tabular{ll}{
-    \code{assetsTest} \tab Test for multivariate Normal distribution. }
+    \code{assetsTest} \tab Test Suite for multivariate Normal distribution, \cr
+    \code{mvshapiroTest} \tab multivaraite Shapiro Test. }
     
 }
     
@@ -62,32 +64,12 @@ assetsTest(x, method = c("shapiro", "energy"), Replicates = 100,
 }
 
 
-\note{
-    
-    The usage of the alternative \code{method="energy"} requires to
-    load the contributed R package \code{energy}. This is done by the
-    function \code{assetsTest} itself, but it is important to know, 
-    that the packages can only loaded if they are installed.
-    
-}
-
-
 \value{
   
     \code{assetsTest}
     \cr
     returns an object of class \code{fHTEST}.     
   
-}
-
-
-\details{
-  
-    \bold{Assets Tests:}
-    \cr\cr   
-    The function \code{assetsTest} performs two tests for multivariate
-    Normality of an assets Set.
-
 }
 
 
@@ -117,19 +99,21 @@ Szekely G.J. (1989);
 
 \author{
 
-    Maria Rizzoand Gabor Szekely for R's \code{energy} package, \cr
-    Diethelm Wuertz for the Rmetrics port.
+    Diethelm Wuertz for this Rmetrics port.
     
 }
 
 
 \examples{
-## berndtInvest -
-   data(berndtInvest)
-   # Exclude Date, Market and Interest Rate columns from data frame,
-   berndtAssets = berndtInvest[, -c(1, 11, 18)]
-   rownames(berndtAssets) = berndtInvest[, 1]
-   head(berndtAssets)  
+## LPP -
+   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
+   colnames(LPP)
+   
+   # Multivariate Shapiro Test:
+   assetsTest(LPP, "shapiro")
+   
+   # Multivariate Energy Test:
+   assetsTest(LPP, "energy")
 }
 
 

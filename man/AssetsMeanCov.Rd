@@ -1,9 +1,7 @@
-\name{AssetsMeanCovariances}
+\name{assetsMeanCov}
 
-\alias{AssetsMeanCovariances}
 
 \alias{assetsMeanCov}
-\alias{assetsStats}
 
 
 \title{Estimation of Mean and Covariances of Asset Sets}
@@ -14,30 +12,21 @@
     A collection and description of functions which allow
     to estimate the mean and/or covariance matrix of a 
     time series of assets by traditional and robust methods.
-    \cr
-    
-    The functions are:
-    
-    \tabular{ll}{
-    \code{assetsStats} \tab Computes basic statistics of a set of assets, \cr
-    \code{assetsMeanCov} \tab Computes mean and covariance matrix. }
     
 }
     
 
 \usage{
-assetsStats(x)
-
-assetsMeanCov(x, method = c("cov", "mve", "mcd", "MCD", "OGK", "nnve", 
-    "shrink", "bagged"), check = TRUE, force = TRUE, baggedR = 100, 
-    sigmamu = scaleTau2, alpha = 1/2, \dots)
+assetsMeanCov(x, 
+    method = c("cov", "mve", "mcd", "MCD", "OGK", "nnve", "shrink", "bagged"), 
+    check = TRUE, force = TRUE, baggedR = 100, sigmamu = scaleTau2, 
+    alpha = 1/2, ...)
 }
+
 
 \arguments{
   
-
-    \item{alpha}{ 
-        [assetsMeanCov] - \cr
+\item{alpha}{ 
         when \code{methode="MCD"}, a numeric parameter controlling the size 
         of the subsets over which the determinant is minimized, i.e., 
         \code{alpha*n} observations are used for computing the determinant. 
@@ -46,7 +35,6 @@ assetsMeanCov(x, method = c("cov", "mve", "mcd", "MCD", "OGK", "nnve",
         \code{robustbase}.
         }
     \item{baggedR}{
-        [assetsMeanCov] - \cr
         when \code{methode="bagged"}, an integer value, the number of 
         bootstrap replicates, by default 100.
         }
@@ -55,12 +43,10 @@ assetsMeanCov(x, method = c("cov", "mve", "mcd", "MCD", "OGK", "nnve",
         positive definite? By default \code{TRUE}.
         }
     \item{force}{
-        [assetsMeanCov] - \cr
         a logical flag. Should the covariance matrix be forced to be
         positive definite? By default \code{TRUE}.
         }
     \item{method}{
-        [assetsMeanVar] - \cr
         a character string, whicht determines how to compute the covariance
         matix. If \code{method="cov"} is selected then the standard 
         covariance will be computed by R's base function \code{cov}, if 
@@ -71,7 +57,6 @@ assetsMeanCov(x, method = c("cov", "mve", "mcd", "MCD", "OGK", "nnve",
         version of the covariance estimator.\cr
         }  
     \item{sigmamu}{ 
-        [assetsMeanCov] - \cr
         when \code{methode="OGK"}, a function that computes univariate robust 
         location and scale estimates. By default it should return a single 
         numeric value containing the robust scale (standard deviation) 
@@ -104,27 +89,13 @@ assetsMeanCov(x, method = c("cov", "mve", "mcd", "MCD", "OGK", "nnve",
   
   
     \code{assetsMeanCov}
-    \cr
-    returns a list with two entries named \code{mu} and Sigma{Sigma}.
-    The first denotes the vector of assets means, and the second the 
-    covariance matrix. Note, that the output of this function can be
-    used as data input for the portfolio functions to compute the
-    efficient frontier.
-  
-}
 
-
-\details{
-
-    \bold{Assets Mean and Covariance:}
-    \cr\cr   
-    The function \code{assetsMeanCov} computes the mean vector and covariance
-    matrix of an assets set. For the covariance matrix one can select from
-    three choicdes: The standard covariance computation through R's base
-    function \code{cov} and a shrinked and bagged version for the covariance.
-    The latter two choices implement the covariance computation from the
-    functions \code{cov.shrink()} and \code{cov.bagged()} which are part
-    of the contributed R package \code{corpcov}.
+    returns a list with for entries named \code{center} \code{cov},
+    \code{mu} and \code{Sigma}. The list has a character vector attributed
+    with additional control parameters.
+    
+    Note, the third entry has the same value as the first, and the second
+    the same as the fourth entry.
   
 }
 
@@ -164,31 +135,15 @@ Schaefer J., Strimmer K. (2005);
 
 
 \examples{
-## berndtInvest -
-   data(berndtInvest)
-   # Select "CONTIL" "DATGEN" "TANDY" and "DEC" Stocks:
-   select = c("CONTIL", "DATGEN", "TANDY", "DEC")
-   # Convert into a timeSeries object:
-   berndtAssets.tS = as.timeSeries(berndtInvest)[, select]
-   head(berndtAssets.tS)
+## LPP -
+   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
+   colnames(LPP)
    
-## Classical Covariance Estimation:
-   assetsMeanCov(berndtAssets.tS, method = "cov")
+## Sample Covariance Estimation:
+   assetsMeanCov(LPP)
    
-## mcd Covariance Estimation:
-   # assetsMeanCov(berndtAssets.tS, method = "mcd")
-   
-## mve Covariance Estimation:
-   # assetsMeanCov(berndtAssets.tS, method = "mve")
-   
-## nnve Covariance Estimation:
-   # assetsMeanCov(berndtAssets.tS, method = "nnve")
-   
-## shrinkage Covariance Estimation:
-   assetsMeanCov(berndtAssets.tS, method = "shrink")
-   
-## bagged Covariance Estimation:
-   assetsMeanCov(berndtAssets.tS, method = "bagged")
+## MASS Robust mcd Covariance Estimation:
+   assetsMeanCov(LPP, "mcd")
 }
 
 

@@ -15,7 +15,7 @@
 # MA  02111-1307  USA
 
 # Copyrights (C)
-# for this R-port: 
+# for this R-port:
 #   1999 - 2007, Diethelm Wuertz, GPL
 #   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
 #   info@rmetrics.org
@@ -28,42 +28,18 @@
 
 
 ################################################################################
-# FUNCTION:             ASSETS NORMALITY TESTS:
-#  assetsTest            Tests for multivariate Normal Assets
-#   method = "shapiro"    ... calling Shapiro test
-#   method = "energy"     ... calling E-Statistic (energy) test                       
+# FUNCTION:             ASSETS STATISTICS:
+#  assetsLPM             Computes Lower Partial Moments
 ################################################################################
 
 
-test.assetsTestShapiro =
+test.assetsLPM =
 function()
-{ 
-    # default Method:
-    x = assetsSim(100)
-    assetsTest(x)
-    assetsTest(x, method = "shapiro")
-
-    # Return Value:
-    return()
-}
+{
+    tS = as.timeSeries(data(LPP2005REC))[, 1:6]
+    assetsLPM(x = tS, tau = colMeans(tS), a = 1)
 
 
-# ------------------------------------------------------------------------------
-
-
-test.assetsTestEnergy =
-function()
-{ 
-    # Load "energy" Package:
-    # require(energy)
-    
-    # Bivariate Data:
-    x = assetsSim(100)
-    head(x)
-    
-    # Energy Test: 
-    assetsTest(x, method = "energy")
-    
     # Return Value:
     return()
 }

@@ -28,19 +28,20 @@
 
 
 ################################################################################
-# FUNCTION:             ASSETS STATISTICS:
-#  assetsLPM             Computes Lower Partial Moments                    
+# FUNCTION:             ASSETS NORMALITY TESTS:
+#  assetsTest            TestSuite for multivariate Normal Assets    
+#  mvshapiroTest         Multivariate Shapiro Test               
 ################################################################################
 
 
-test.assetsLPM =
-function()
+test.assetsTest <- 
+    function()
 { 
-    tS = .usPortfolioData()
-    # assetsLPM(x = tS, tau = colAvgs(tS), a = 1)                  # CHECK error
+    # Default Method:
+    x = assetsSim(100)
+    assetsTest(x)
 
-
-# Return Value:
+    # Return Value:
     return()
 }
 

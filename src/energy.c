@@ -1,3 +1,4 @@
+
 /*
    energy.c: energy package
 
@@ -14,6 +15,7 @@
    poisMstat()    computes the mean distance test of Poissonity
    sumdist()      sums the distance matrix without creating the matrix
 */
+
 
 #include <R.h>
 #include <Rmath.h>
@@ -213,8 +215,8 @@ void E2sample(double *x, int *sizes, int *dim, double *stat) {
 }
 
 void ksampleEtest(double *x, int *byrow,
-                  int *nsamples, int *sizes, int *dim,
-                  int *R, double *e0, double *e, double *pval)
+    int *nsamples, int *sizes, int *dim,
+    int *R, double *e0, double *e, double *pval)
 {
     /*
       exported for R energy package: E test for equal distributions
@@ -274,7 +276,7 @@ void ksampleEtest(double *x, int *byrow,
 }
 
 void twosampleIEtest(double *x, int *byrow, int *sizes, int *dim, int *iN,
-                   int *R, double *e0, double *e, double *pval)
+    int *R, double *e0, double *e, double *pval)
 {
     /*
       exported for R energy package: incomplete E test for equal distributions

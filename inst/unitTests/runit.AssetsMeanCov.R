@@ -15,7 +15,7 @@
 # MA  02111-1307  USA
 
 # Copyrights (C)
-# for this R-port: 
+# for this R-port:
 #   1999 - 2007, Diethelm Wuertz, GPL
 #   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
 #   info@rmetrics.org
@@ -29,29 +29,25 @@
 
 ################################################################################
 # FUNCTION:             ASSETS STATISTICS:
-#  assetsStats           Computes basic statistics of a set of assets  
+#  assetsStats           Computes basic statistics of a set of assets
 # FUNCTION:             MEAN-COVARIANCE ESTIMATION:
 #  assetsMeanCov         Estimates mean and variance for a set of assets
-#   method = "cov"        uses standard covariance estimation
-#   method = "mve"        uses "mve" from [MASS]
-#   method = "mcd"        uses "mcd" from [MASS]
-#   method = "nnve"       uses "nnve" from [covRobust]
-#   method = "shrink"     uses "shrinkage" from [corpcor]
-#   method = "bagged"     uses "bagging" [corpcor]
 ################################################################################
 
 
 test.assetsStats =
 function()
 {
+    # Time Series Object:
+    Data <- as.timeSeries(LPP2005REC)[, 1:6]
+
     # Settings:
-    Data = .usPortfolioData()
     class(Data)
     head(Data)
-    
+
     # Statistics:
-    assetsStats(as.matrix(Data))          # CHECK - extend to timeSeries Objects
-    
+    assetsStats(as.matrix(Data))
+
     # Return Value:
     return()
 }
@@ -63,36 +59,23 @@ function()
 test.assetsMeanCov =
 function()
 {
+
+    # Time Series Object:
+    Data <- as.timeSeries(LPP2005REC)[, 1:6]
+
     # Settings:
-    Data = .usPortfolioData()
     class(Data)
-    
-    # Test Standard Mean-Covariance:
+
+    # use "cov":
     args(assetsMeanCov)
-    assetsMeanCov(Data, method = "cov")
-   
-    
-    # uses "mve" from [MASS]
-    # assetsMeanCov(Data, method = "mve")
-    
-    # uses "mcd" from [MASS]
-    # assetsMeanCov(Data, method = "mcd")
-    
-    # uses "nnve" from [covRobust]
-    # assetsMeanCov(Data, method = "nnve")                       # CHECK control
-    
-    # uses "shrinkage" from [corpcor]
-    assetsMeanCov(Data, method = "shrink")
-    
-    # uses "bagging" [corpcor]
-    # assetsMeanCov(Data, method = "bagg")
-    
-    # checkEqualsNumeric(target, current)
-    
+    assetsMeanCov(Data)
+
+    # use "shrink"
+    assetsMeanCov(Data, "shrink")
+
     # Return Value:
     return()
 }
 
 
 ################################################################################
-

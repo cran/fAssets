@@ -14,17 +14,12 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
+
+################################################################################
+# FUNCTION:                 ASSETS NORMALITY TESTS:
+#  assetsTest                Tests for multivariate Normal Assets
+#  mvshapiroTest             Multivariate Shapiro Test
+################################################################################
 
 
 ################################################################################
@@ -92,7 +87,7 @@ function(x, Replicates = 99, title = NULL, description = NULL)
     # FUNCTION:
     
     # Transform:
-    if (class(x) == "timeSeries") x = seriesData(x)
+    if (class(x) == "timeSeries") x = series(x)
     x = as.matrix(x)
     
     # Test: 
@@ -135,26 +130,6 @@ function(x, Replicates = 99, title = NULL, description = NULL)
         title = title,
         description = description)
 }
-
-
-# ------------------------------------------------------------------------------
-
-
-.mvnorm.e <- 
-function(x) 
-{
-    z <- scale(x, scale = FALSE)   
-    ev <- eigen(var(x), symmetric = TRUE)  
-    P <- ev$vectors   
-    y <- z %*% (P %*% diag(1 / sqrt(ev$values)) %*% t(P))
-    e <- .C("mvnEstat", y = as.double(t(y)), byrow = as.integer(TRUE),
-        nobs = as.integer(nrow(x)), dim = as.integer(ncol(x)), 
-        stat = as.double(0), PACKAGE = "fAssets")$stat
-        
-    # Return Value:
-    e
-}
-
 
   
 ################################################################################
@@ -223,4 +198,6 @@ function(x, title = NULL, description = NULL)
 
 
 ################################################################################
+
+
 
