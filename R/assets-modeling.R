@@ -148,7 +148,7 @@ assetsSim <-
             stop("dimensions of arguments do not match")
         
         # Simulate Series - calls from package sn:
-        x <- rmnorm(n=n, mean=model$mu, varcov=model$Omega)
+        x <- mnormt::rmnorm(n=n, mean=model$mu, varcov=model$Omega)
         x <- rmsn(n=n, xi=model$mu, Omega=model$Omega, alpha=model$alpha)
         x <- rmst(n=n, xi=model$mu, Omega=model$Omega, alpha=model$alpha, 
              nu=model$df)

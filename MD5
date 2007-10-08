@@ -1,12 +1,12 @@
 6f76cf88fea9fabd3ca573729596fe98 *ChangeLog
-f9156a097bd6cd4a2bc702518329164d *DESCRIPTION
+bc222110c300c3579386b42f7fc874c1 *DESCRIPTION
 d21fabac988a87080a4f440252af5f49 *NAMESPACE
 40b4dc30be6c30ec7764d8dd9c3211dc *R/assets-arrange.R
 8ca18680030776ed0e75d416fa24741f *R/assets-distance.R
 911b15b0d0dcfd529c6702574ea9d550 *R/assets-lpm.R
 00a1667fe8df1b6e6505aa40047fbd33 *R/assets-mcr.R
 e9428de8dc6fc90875ef7e049ad2ee5d *R/assets-meancov.R
-d5e7db672309495006d40afda5702e08 *R/assets-modeling.R
+6e6773bcf79cf5e85154ca7cc81fa7b1 *R/assets-modeling.R
 9a4ba1e59c01ab0915cfe1c57c7772a0 *R/assets-outliers.R
 36cc24c846c2e7e7c6b04ad132dbbc83 *R/assets-portfolio.R
 7ecc26d8d6a160ad62d6797a95072b4c *R/assets-selection.R
