@@ -30,30 +30,30 @@ assetsHistPairsPlot <-
     #   Displays bivariate Histogram Plot
     
     # Arguments:
-    #   x -
-    #   bins -
-    #   method -
+    #   x - timeSeries
+    #   bins - histogram bins
+    #   method - plot method
      
     # Example:
-    #   x = 100 * as.timeSeries(data(LPP2005REC))[, c("SBI", "SPI")]
+    #   x <- 100 * as.timeSeries(data(LPP2005REC))[, c("SBI", "SPI")]
     #   assetsHistPairsPlot(x, bins = 20)
     #   assetsHistPairsPlot(x, bins = 20, method = "hex")
     
     # FUNCTION:
 
     # Match Arguments:
-    method = match.arg(method)
+    method <- match.arg(method)
 
     # Check:
     stopifnot(ncol(x) == 2)
 
     # Histogram Plot:
-    X = as.vector(x[, 1])
-    Y = as.vector(x[, 2])
+    X <- as.vector(x[, 1])
+    Y <- as.vector(x[, 2])
     if (method == "square") {
-        ans = squareBinning(x = X, y= Y, bins = bins)
+        ans <- squareBinning(x = X, y= Y, bins = bins)
     } else if (method == "hex") {
-        ans = hexBinning(x = X, y = Y, bins = bins)
+        ans <- hexBinning(x = X, y = Y, bins = bins)
     }
 
     # Plot:

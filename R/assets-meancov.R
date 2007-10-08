@@ -117,25 +117,25 @@ function(x,
         
     # From R Package "robustbase":
     if (method == "MCD" | method == "Mcd") {
-        ans = robustbase::covMcd(x.mat, alpha = alpha, ...)
+        ans <- covMcd(x.mat, alpha = alpha, ...)
         mu = ans$center
         Sigma = ans$cov
         user = FALSE
     }   
     if (method == "OGK" | method == "Ogk") {
-        ans = robustbase::covOGK(x.mat, sigmamu = scaleTau2, ...)
+        ans <- covOGK(x.mat, sigmamu = scaleTau2, ...)
         user = FALSE    
     }
     
     # [MASS] mve and mcd Routines:
     if (method == "mve") {
         # require(MASS)
-        ans = MASS::cov.rob(x = x.mat, method = "mve")
+        ans = cov.rob(x = x.mat, method = "mve")
         user = FALSE
     }
     if (method == "mcd") {
         # require(MASS)
-        ans = MASS::cov.rob(x = x.mat, method = "mcd") 
+        ans = cov.rob(x = x.mat, method = "mcd") 
         user = FALSE
     }    
         
@@ -248,7 +248,7 @@ function(x, ...)
     N = ncol(x)
     assetNames = colnames(x)
     
-    ans = MASS::cov.rob(x = x.mat, method = "mve")
+    ans <- cov.rob(x = x.mat, method = "mve")
     names(ans$center) = assetNames
     rownames(ans$cov) = colnames(ans$cov) = assetNames
     
@@ -275,7 +275,7 @@ function(x, ...)
     N = ncol(x)
     assetNames = colnames(x)
     
-    ans = MASS::cov.rob(x = x.mat, method = "mcd") 
+    ans <- cov.rob(x = x.mat, method = "mcd") 
     names(ans$center) = assetNames
     rownames(ans$cov) = colnames(ans$cov) = assetNames
     
@@ -302,7 +302,7 @@ function(x, ...)
     N = ncol(x)
     assetNames = colnames(x)
         
-    ans = MASS::cov.trob(x, ...)
+    ans <- cov.trob(x, ...)
     names(ans$center) = assetNames
     rownames(ans$cov) = colnames(ans$cov) = assetNames
       
@@ -329,7 +329,7 @@ function(x, alpha = 1/2, ...)
     N = ncol(x)
     assetNames = colnames(x)
     
-    ans = robustbase::covMcd(x.mat, alpha = alpha, ...)
+    ans <- covMcd(x.mat, alpha = alpha, ...)
     names(ans$center) = assetNames
     rownames(ans$cov) = colnames(ans$cov) = assetNames
     
@@ -356,7 +356,7 @@ function(x, sigmamu = scaleTau2, ...)
     N = ncol(x)
     assetNames = colnames(x)
     
-    ans = robustbase::covOGK(x.mat, sigmamu = scaleTau2, ...)
+    ans <- covOGK(x.mat, sigmamu = scaleTau2, ...)
     names(ans$center) = assetNames
     rownames(ans$cov) = colnames(ans$cov) = assetNames
     

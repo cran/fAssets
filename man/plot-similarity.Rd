@@ -1,4 +1,4 @@
-\name{similarityPlot}
+\name{plot-similarity}
 
 \alias{similarityPlot}
 
@@ -94,12 +94,16 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
-   
-## assetsDendrogramPlot -
-   assetsDendrogramPlot(LPP)
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
+   head(LPP) 
 
+## assetsDendrogramPlot - 
+   # Display a Dendrogram Plot:
+   assetsDendrogramPlot(LPP)
+   
 ## assetsCorEigenPlot -
+   # Display a Correlation Eigenvalue Ratio  Plot:
    assetsCorEigenPlot(LPP)
 }
 

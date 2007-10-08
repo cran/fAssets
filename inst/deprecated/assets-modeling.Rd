@@ -1,23 +1,28 @@
-\name{assetsFit}
+\name{assets-modeling}
 
 
 \alias{assetsFit}
-\alias{mvsnormFit} % FIXME
+\alias{assetsSim}
 
-\title{Fitting of Multivariate Asset Sets}
+
+\title{Modeling of Multivariate Asset Sets}
 
 
 \description{
   
-    Fits the parameters to a multivariate normal, 
-    skew normal, or (skew) Student-t distribution. 
+    Fits the parameters to a multivariate normal, skew normal, 
+    or (skew) Student-t distribution and allows to simulate 
+    artificial asset series.
     
 }
     
 
 \usage{   
 assetsFit(x, method = c("st", "snorm", "norm"), title = NULL, 
-    description = NULL, fixed.df = NA, \dots)
+    description = NULL, fixed.df = NA)
+    
+assetsSim(n, dim = 2, model = list(mu = rep(0, dim), Omega = diag(dim), 
+    alpha = rep(0, dim), df = Inf), assetNames = NULL) 
 }
 
 
@@ -29,6 +34,9 @@ assetsFit(x, method = c("st", "snorm", "norm"), title = NULL,
         transformed by the function \code{as.matrix} to an object of 
         class \code{matrix}.
         }
+    \item{n}{
+        integer value, the number of data records to be simulated. 
+        }
     \item{method}{
         a character string, which type of distribution should be fitted?
         \code{method="st"} denotes a multivariate skew-Student-t distribution,
@@ -37,10 +45,31 @@ assetsFit(x, method = c("st", "snorm", "norm"), title = NULL,
         By default a multivariate normal distribution will be fitted to the
         empirical market data.
         }
+    \item{dim}{
+        integer value, the dimension (number of columns) of the assets 
+        set.
+        }
+    \item{model}{
+        a list of model parameters: \cr
+        \code{mu} a vector of mean values, one for each asset series, \cr
+        \code{Omega} the covariance matrix of assets, \cr
+        \code{alpha} the skewness vector, and \cr
+        \code{df} the number of degrees of freedom which is a measure for
+            the fatness of the tails (excess kurtosis). \cr
+        For a symmetric distribution \code{alpha} is a vector of zeros.
+        For the normal distributions \code{df} is not used and set to 
+        infinity, \code{Inf}. Note that all assets have the same value 
+        for \code{df}.
+        }   
+    \item{assetNames}{
+        [assetsSim] - \cr
+        a vector of character strings of length \code{dim} allowing
+        for modifying the names of the individual assets.
+        }
     \item{title}{
         a character string, assigning a title to an 
         \code{"fASSETS"} object.
-        } 
+        }
     \item{description}{
         a character string, assigning a brief description to an 
         \code{"fASSETS"} object.
@@ -115,7 +144,11 @@ assetsFit(x, method = c("st", "snorm", "norm"), title = NULL,
     Note that the \code{@fit$model} slot can be used as input to the 
     function \code{assetsSim} for simulating a similar portfolio of 
     assets compared with the original portfolio data, usually market
-    assets.
+    assets.   
+    
+    \code{assetsSim()} 
+    \cr
+    returns a signal series (S4 time Series object) of simulated assets.
 
 }
 
@@ -190,27 +223,24 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 
 \examples{
-## LPP -
-   # Percentual Returns:
-   LPP = 100 * as.timeSeries(data(LPP2005REC))[, 1:6]
-   colnames(LPP)
+## LPP2005REC -
+   # Load Swiss Pension Fund Data as Percentual Returns:
+   LPP <- 100 * LPP2005REC[, 1:3]
+   head(LPP)
    
 ## assetsFit -
-   # Fit a Skew-Student-t Distribution:
-   fit = assetsFit(LPP)
-   print(fit)
+   # Fit a Skew-Student-t Distribution: 
+   fit <- assetsFit(LPP)
    # Show Model Slot:
    print(fit@model)
    
 ## assetsSim -
    # Simulate set with same statistical properties:
    set.seed(1953)
-   lppSim = assetsSim(n = nrow(LPP), dim = ncol(LPP), model = fit@model)
-   colnames(lppSim) <- colnames(LPP)
-   rownames(lppSim) <- rownames(LPP)
-   head(lppSim) 
+   LPP.SIM <- assetsSim(n=nrow(LPP), dim=ncol(LPP), model=fit@model)
+   colnames(LPP.SIM) <- colnames(LPP)
+   head(LPP.SIM) 
 }
-
 
 \keyword{models}
 

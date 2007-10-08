@@ -1,4 +1,4 @@
-\name{assetsSelect}
+\name{assets-selection}
 
 
 \alias{assetsSelect}
@@ -91,12 +91,13 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
    colnames(LPP)
     
 ## assetsSelect -
-   # hclust Clustering:
-   hclust = assetsSelect(LPP, "hclust") 
+   # Hierarchical Clustering:
+   hclust <- assetsSelect(LPP, "hclust") 
    plot(hclust)
    
 ## assetsSelect -  

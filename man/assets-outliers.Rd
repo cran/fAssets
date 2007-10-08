@@ -1,4 +1,4 @@
-\name{assetsOutliers}
+\name{assets-outliers}
 
 
 \alias{assetsOutliers}
@@ -73,7 +73,8 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
+   LPP <- as.timeSeries(data(LPP2005REC))[, 1:6]
+   colnames(LPP)
    
 ## assetsOutliers -
    assetsOutliers(LPP, colMeans(LPP), cov(LPP))

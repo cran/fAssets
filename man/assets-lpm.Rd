@@ -1,6 +1,8 @@
-\name{assetsLPM}
+\name{assets-lpm}
+
 
 \alias{assetsLPM}
+\alias{assetsSLPM}
 
 
 \title{Computation of Lower Partial Moments of Asset Sets}
@@ -8,13 +10,14 @@
 
 \description{
   
-    Computes assymmetric lower partial moments from a time 
+    Computes lower partial moments from a time 
     series of assets.   
 }
     
 
 \usage{
 assetsLPM(x, tau, a, \dots)
+assetsSLPM(x, tau, a, \dots)
 }
 
 
@@ -68,10 +71,9 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
-   
-   # Lower Partial Moments:
-   assetsLPM(LPP)
+   # Percentual Returns:
+   LPP <- 100 * as.timeSeries(data(LPP2005REC))[, 1:6]
+   colnames(LPP)
 }
 
 

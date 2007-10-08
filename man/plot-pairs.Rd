@@ -1,4 +1,4 @@
-\name{pairsPlot}
+\name{plot-pairs}
 
 
 \alias{pairsPlot}
@@ -101,20 +101,26 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC[, 1:6]
+   head(LPP)   
    
-## assetsPairsPlot - 
-   assetsPairsPlot(LPP[, 1:6])
+## assetsPairsPlot -
+   # Create Pairs Plot:  
+   assetsPairsPlot(LPP)
   
-## assetsCorgramPlot -  
-   assetsCorgramPlot(LPP[, 1:6], method = "pie")
-   assetsCorgramPlot(LPP[, 1:6], method = "shade")
+## assetsCorgramPlot - 
+   # Create Corellogram Plot:  
+   assetsCorgramPlot(LPP, method = "pie")
+   assetsCorgramPlot(LPP, method = "shade")
    
-## assetsCorTestPlot -
-   assetsCorTestPlot(LPP[, 1:6])
+## assetsCorTestPlot - 
+   # Create Correlation Test Plot: 
+   assetsCorTestPlot(LPP)
    
 ## assetsCorImagePlot -
-   assetsCorImagePlot(LPP[, 1:6])    
+   # Create Correlation Image Plot: 
+   assetsCorImagePlot(LPP)    
 }
 
 

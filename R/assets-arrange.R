@@ -17,19 +17,20 @@
 
 ################################################################################
 # FUNCTION:                DESCRIPTION:
-# assetsArrange             Rearranges the columns in a deta set of assets
-#  .pcaArrange               Returns PCA correlation ordered column names
-#  .hclustArrange            Returns hierarchical clustered column names
-#  .abcArrange               Returns sorted column names
-#  .orderArrange             Returns ordered column names
-#  .sampleArrange            Returns sampled column names
-#  .statsArrange             Returns statistically rearranged column names
+#  assetsArrange            Rearranges the columns in a deta set of assets
+# FUNCTION:                DESCRIPTION:
+#  pcaArrange               Returns PCA correlation ordered column names
+#  hclustArrange            Returns hierarchical clustered column names 
+#  abcArrange               Returns sorted column names 
+#  orderArrange             Returns ordered column names 
+#  sampleArrange            Returns sampled column names 
+#  statsArrange             Returns statistically rearranged column names
 ################################################################################
 
 
 assetsArrange <-
     function(x, method = c("pca", "hclust", "abc"), ...)
-{
+{ 
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -37,24 +38,24 @@ assetsArrange <-
 
     # Arguments:
     #   x - S4 object of class 'timeSeries'
-
+    
     # FUNCTION:
-
+    
     # Settings:
-    method = match.arg(method)
-    FUN = paste(".", method, "Arrange", sep = "")
-    arrange = match.fun(FUN)
-
+    method <- match.arg(method)
+    FUN <- paste(method, "Arrange", sep = "")
+    arrange <- match.fun(FUN)
+    
     # Return Value:
     arrange(x, ...)
 }
-
+    
 # ------------------------------------------------------------------------------
 
 
-.pcaArrange <-
+pcaArrange <-
     function(x, robust = FALSE, ...)
-{
+{   
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -62,21 +63,23 @@ assetsArrange <-
 
     # Arguments:
     #   x - S4 object of class 'timeSeries'
-
+        
+    # Notes:
+    #   Requires package "robustbase".
+    
     # FUNCTION:
 
     # Order:
     if (robust) {
-            x.cor = covMcd(as.matrix(x), cor = TRUE, ...)$cor
+        x.cor <- covMcd(as.matrix(x), cor = TRUE, ...)$cor
     } else {
-        x.cor = cor(as.matrix(x), ...)
+        x.cor <- cor(as.matrix(x), ...)
     }
-
-    x.eigen = eigen(x.cor)$vectors[,1:2]
-    e1 = x.eigen[, 1]
-    e2 = x.eigen[, 2]
-    Order = order(ifelse(e1 > 0, atan(e2/e1), atan(e2/e1)+pi))
-    ans = colnames(as.matrix(x))[Order]
+    x.eigen <- eigen(x.cor)$vectors[,1:2]
+    e1 <- x.eigen[, 1]
+    e2 <- x.eigen[, 2]
+    Order <- order(ifelse(e1 > 0, atan(e2/e1), atan(e2/e1)+pi))
+    ans <- colnames(as.matrix(x))[Order]
 
     # Return Value:
     ans
@@ -86,9 +89,9 @@ assetsArrange <-
 # ------------------------------------------------------------------------------
 
 
-.hclustArrange <-
+hclustArrange <- 
     function(x, method = c("euclidean", "complete"), ...)
-{
+{   
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -104,9 +107,11 @@ assetsArrange <-
     # FUNCTION:
 
     # Order:
-    Order = hclust(dist(t(as.matrix(x)),
-        method = method[1]), method = method[2], ...)$order
-    ans = colnames(as.matrix(x))[Order]
+    Order <- hclust(
+        dist(t(as.matrix(x)),
+        method = method[1]), 
+        method = method[2], ...)$order
+    ans <- colnames(as.matrix(x))[Order]
 
     # Return Value:
     ans
@@ -116,9 +121,9 @@ assetsArrange <-
 # ------------------------------------------------------------------------------
 
 
-.abcArrange <-
+abcArrange <- 
     function(x, ...)
-{
+{   
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -126,11 +131,11 @@ assetsArrange <-
 
     # Arguments:
     #   x - S4 object of class 'timeSeries'
-
+    
     # FUNCTION:
 
     # Sort:
-    ans = sort(colnames(as.matrix(x)), ...)
+    ans <- sort(colnames(as.matrix(x)), ...)
 
     # Return Value:
     ans
@@ -140,9 +145,9 @@ assetsArrange <-
 # ------------------------------------------------------------------------------
 
 
-.orderArrange <-
+orderArrange <-
     function(x, ...)
-{
+{   
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -150,11 +155,11 @@ assetsArrange <-
 
     # Arguments:
     #   x - S4 object of class 'timeSeries'
-
+    
     # FUNCTION:
 
     # Order:
-    ans = order(colnames(as.matrix(x)), ...)
+    ans <- order(colnames(as.matrix(x)), ...)
 
     # Return Value:
     ans
@@ -164,9 +169,9 @@ assetsArrange <-
 # ------------------------------------------------------------------------------
 
 
-.sampleArrange <-
+sampleArrange <- 
     function(x, ...)
-{
+{   
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -174,11 +179,11 @@ assetsArrange <-
 
     # Arguments:
     #   x - S4 object of class 'timeSeries'
-
+    
     # FUNCTION:
 
     # Sample:
-    ans = sample(colnames(as.matrix(x)), ...)
+    ans <- sample(colnames(as.matrix(x)), ...)
 
     # Return Value:
     ans
@@ -188,9 +193,9 @@ assetsArrange <-
 # ------------------------------------------------------------------------------
 
 
-.statsArrange <-
+statsArrange <- 
     function(x, FUN = colMeans, ...)
-{
+{   
     # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -198,7 +203,7 @@ assetsArrange <-
 
     # Arguments:
     #   x - S4 object of class 'timeSeries'
-
+    
     # Note:
     #   Example of function Candidates:
     #   colStats        calculates column statistics,
@@ -216,10 +221,10 @@ assetsArrange <-
     # FUNCTION:
 
     # Apply colStats Function:
-    fun = match.fun(FUN)
-    Sort = sort(fun(x, ...))
-    Order = names(Sort)
-    ans = colnames(as.matrix(x)[, Order])
+    fun <- match.fun(FUN)
+    Sort <- sort(fun(x, ...))
+    Order <- names(Sort)
+    ans <- colnames(as.matrix(x)[, Order])
     attr(ans, "control") <- Sort
 
     # Return Value:
@@ -228,3 +233,4 @@ assetsArrange <-
 
 
 ################################################################################
+

@@ -83,8 +83,8 @@ setMethod("show", "fASSETS",
 # ------------------------------------------------------------------------------
 
 
-plot.fASSETS =
-function(x, which = "ask", ...)
+plot.fASSETS <- 
+    function(x, which = "ask", ...)
 {   
     # A function implemented by Diethelm Wuertz
 
@@ -125,7 +125,7 @@ function(x, which = "ask", ...)
 
 
 summary.fASSETS =
-function(object, which = "all", ...)
+    function(object, which = "all", ...)
 {   
     # A function implemented by Diethelm Wuertz
 

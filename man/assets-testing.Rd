@@ -1,6 +1,8 @@
-\name{assetsTest}
+\name{assets-testing}
 
 \alias{assetsTest}
+\alias{mvshapiroTest}
+\alias{mvenergyTest}
 
 
 \title{Testing Normality of Multivariate Asset Sets}
@@ -15,8 +17,10 @@
     
 
 \usage{
-assetsTest(x, method = c("shapiro", "energy"), Replicates = 100, 
-    title = NULL, description = NULL)
+assetsTest(x, method = c("shapiro", "energy"), Replicates = 99)
+
+mvshapiroTest(x)
+mvenergyTest(x, Replicates = 99)
 }
 
 
@@ -40,22 +44,13 @@ assetsTest(x, method = c("shapiro", "energy"), Replicates = 100,
     \item{Replicates}{
         an integer value, the number of bootstrap replicates, by
         default 100. This value is only used if \code{method="energy"}.
-        }
-    \item{title}{
-        a character string, assigning a title to an 
-        \code{"fASSETS"} object.
-        }
-    \item{description}{
-        a character string, assigning a brief description to the
-        returned object.
-        }    
-        
+        }   
 }
 
 
 \value{
   
-    returns an object of class \code{fHTEST}.     
+    returns an object of class \code{htest}.     
   
 }
 
@@ -89,13 +84,16 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
-   colnames(LPP)
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC[, 1:6]
+   head(LPP)
    
-   # Multivariate Shapiro Test:
+## assetsTest -
+   # Multivariate Shapiro Test - 
    assetsTest(LPP, "shapiro")
-   
-   # Multivariate Energy Test:
+  
+## assetsTest -
+   # Multivariate Energy Test - 
    assetsTest(LPP, "energy")
 }
 

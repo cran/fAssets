@@ -1,4 +1,4 @@
-\name{boxPlot}
+\name{plot-boxplot}
 
 
 \alias{boxPlot}
@@ -59,14 +59,18 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC[, 1:6]
    head(LPP)
    
 ## assetsBoxPlot - 
+   # Create a Boxplot: assetsBoxPlot - 
    assetsBoxPlot(LPP)
        
 ## assetsBoxPercentilePlot - 
-   assetsBoxPercentilePlot(LPP)   
+   # Create a Box Percentile Plot: assetsBoxPercentilePlot - 
+   assetsBoxPercentilePlot(LPP)  
+   grid(NA, NULL, col="red")
 }
 
 

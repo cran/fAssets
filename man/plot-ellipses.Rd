@@ -1,4 +1,4 @@
-\name{covEllipsesPlot}
+\name{plot-ellipses}
 
 
 \alias{covEllipsesPlot}
@@ -50,14 +50,17 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC[, 1:6]
    head(LPP)
    
-## cov - 
-   Cov = cov(LPP)
-   robustCov = assetsMeanCov(LPP, "MCD")$Sigma
+## assetsMeanCov -
+   # Compute Robust Covariance Matrix: assetsMeanCov - 
+   Cov <- cov(LPP)
+   robustCov <- assetsMeanCov(LPP, "MCD")$Sigma
    
 ## covEllipsesPlot -
+   # Create Covariance Ellipse Plot: 
    covEllipsesPlot(list(Cov, robustCov))  
 }
 

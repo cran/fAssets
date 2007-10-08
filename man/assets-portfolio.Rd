@@ -1,4 +1,4 @@
-\name{assetsPfolio}
+\name{assets-portfolio}
 
 
 \alias{assetsPfolio}
@@ -194,36 +194,52 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## assetsSim -
-   myAssets = 100/12 * assetsSim(n = 120, dim = 4)
+   myAssets <- 100/12 * assetsSim(n = 120, dim = 4)
+   
    # Plot Cumulated Returns of the Assets:
-   prices = apply(myAssets, 2, FUN = cumsum)
-   par(mfrow = c(2, 1), cex = 0.7)
-   ts.plot(prices, col = 1:4, ylim = c(-300, 300))
-   legend(0, 300, legend = colnames(myAssets), pch = "----", col = 1:4)
-   title(main = "Cumulated Returns", ylab = "Cumulated Returns")
-   abline(h = 0, lty = 3)
+#   prices <- apply(myAssets, 2, FUN = cumsum)
+#   par(mfrow = c(2, 1), cex = 0.7)
+#   ts.plot(prices, col = 1:4, ylim = c(-300, 300))
+#   legend(0, 300, legend = colnames(myAssets), pch = "----", col = 1:4)
+#   title(main = "Cumulated Returns", ylab = "Cumulated Returns")
+#   abline(h = 0, lty = 3)
     
 ## pfolioCVaR -
+   # Parameter Settings:
    equalWeights = rep(1/4, 4)
-   alpha = 0.10
+   alpha <- 0.10
+   
+## pfolioVaR -
    # Value at Risk:
    pfolioVaR(myAssets, equalWeights, alpha)
+   
+## pfolioCVaRplus -
    # Conditional Value at Risk Plus:
    pfolioCVaRplus(myAssets, equalWeights, alpha)
+   
+## pfolioCVaR -
    # Conditional Value at Risk Plus:
    pfolioCVaR(myAssets, equalWeights, alpha)
+   
+## lambdaCVaR -
    # Lambda - Atomic Split Value:
    lambdaCVaR(120, alpha) 
 
-## pfolioHist - 
+## pfolioMaxLoss - 
    # Maximum Loss Value of the Portfolio
    pfolioMaxLoss(myAssets, equalWeights)
+   
+## pfolioReturn -
    # Compute Portfolio Returns:
-   r = pfolioReturn(myAssets, equalWeights) 
+   r <- pfolioReturn(myAssets, equalWeights) 
    head(r)
+   
+## pfolioTargetReturn/Risk -
    # Target Return and Target Risk:
    pfolioTargetReturn(myAssets, equalWeights)
    pfolioTargetRisk(myAssets, equalWeights)
+   
+## pfolioHist - 
    # Plot:
    pfolioHist(myAssets, equalWeights, alpha, n = 20)    
 }

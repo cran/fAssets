@@ -1,4 +1,4 @@
-\name{binningPlot}
+\name{plot-binning}
 
 
 \alias{binningPlot}
@@ -63,11 +63,18 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
+   head(LPP)
      
-## assetsHistPairsPlot -
+## assetsHistPairsPlot - 
+   # Create a bivariate Binning Plot: assetsHistPairsPlot -
    assetsHistPairsPlot(LPP[, c("LMI", "ALT")])
+   
+## assetsHistPairsPlot -
+   # Now with hexagonal Bins:
    assetsHistPairsPlot(LPP[, c("LMI", "ALT")], method = "hex")
+   grid(col="red")
 }
 
 \keyword{models}

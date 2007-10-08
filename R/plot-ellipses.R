@@ -48,7 +48,7 @@ covEllipsesPlot <-
     if (length(x) == 0) 
         stop("Input must be a list of at least 2 covariance matrices!")
     nModels = length(x)
-    p = dim(x[[1]])[1]
+    p <- dim(x[[1]])[1]
 
     # Graphics Frame:
     plot(0, 0, xlim = c(0, p+1), ylim = c(0, p+1), type = "n",

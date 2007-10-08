@@ -1,4 +1,4 @@
-\name{assetsMeanCov}
+\name{assets-meancov}
 
 
 \alias{assetsMeanCov}
@@ -144,14 +144,14 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP -
-   LPP = as.timeSeries(data(LPP2005REC))[, 1:6]
+   LPP <- as.timeSeries(data(LPP2005REC))[, 1:6]
    colnames(LPP)
    
 ## Sample Covariance Estimation:
    assetsMeanCov(LPP)
    
 ## Shrinked Estimation:
-   shrink = assetsMeanCov(LPP, "shrink")
+   shrink <- assetsMeanCov(LPP, "shrink")
    shrink
    
 ## Extract Covariance Matrix:

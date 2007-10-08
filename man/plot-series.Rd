@@ -1,4 +1,4 @@
-\name{seriesPlot}
+\name{plot-series}
 
 
 \alias{seriesPlot}
@@ -58,19 +58,24 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
-   
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
+   head(LPP) 
+    
 ## assetsReturnPlot -
-   # par(mfrow = c(3,2))
+   # Create Return Series Plot: 
+   # par(mfrow = c(3, 2))
    assetsReturnPlot(LPP[, 1:3])
    
 ## assetsCumulatedPlot -
-   assetsCumulatedPlot(LPP[, "LPP40"], 
-     col = "red")
+   # Create Cumulated Price/Index Plot: 
+   assetsCumulatedPlot(LPP[, "LPP40"], col = "red")
 
 ## assetsSeriesPlot  
+   # Crete Time Series Plot: 
    assetsSeriesPlot(LPP[, c("LMI", "ALT")], 
-     col =c("orange", "brown"))
+     col = c("orange", "brown"))
 }
+
 
 \keyword{models}

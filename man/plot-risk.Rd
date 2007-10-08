@@ -1,4 +1,4 @@
-\name{riskPlots}
+\name{plot-risk}
 
 
 \alias{seriesPlots}
@@ -78,13 +78,17 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
+   head(LPP) 
    
 ## assetsRiskReturnPlot -
+   # Create Risk/Return Plot: 
    # par(mfrow = c(2, 2))
    assetsRiskReturnPlot(LPP)
    
 ## assetsNIGShapeTrianglePlot -
+   # Create NIG Shape Triangle Plot: 
    assetsNIGShapeTrianglePlot(LPP)
 }
 

@@ -26,7 +26,7 @@
    
 
 covarRisk <-
-function(data, weights = NULL, FUN = "cov", ...)
+    function(data, weights = NULL, FUN = "cov", ...)
 {
     # A function implemented by Diethelm Wuertz
     
@@ -66,7 +66,7 @@ function(data, weights = NULL, FUN = "cov", ...)
 
 
 mcr <- 
-function(data, weights = NULL, FUN = "cov", ...)
+    function(data, weights = NULL, FUN = "cov", ...)
 {
     # A function implemented by Diethelm Wuertz
     
@@ -112,7 +112,7 @@ function(data, weights = NULL, FUN = "cov", ...)
 
 
 mcrBeta <- 
-function(data, weights = NULL, FUN = "cov", ...)
+    function(data, weights = NULL, FUN = "cov", ...)
 {
     # A function implemented by Diethelm Wuertz
     
@@ -144,7 +144,7 @@ function(data, weights = NULL, FUN = "cov", ...)
 
 
 riskContributions <-
-function(data, weights = NULL, FUN = "cov", ...)
+    function(data, weights = NULL, FUN = "cov", ...)
 {
     # A function implemented by Diethelm Wuertz
     
@@ -179,7 +179,7 @@ function(data, weights = NULL, FUN = "cov", ...)
 
 
 riskBudgets <-
-function(data, weights = NULL, FUN = "cov", ...)
+    function(data, weights = NULL, FUN = "cov", ...)
 {
     # A function implemented by Diethelm Wuertz
     

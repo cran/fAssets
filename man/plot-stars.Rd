@@ -1,4 +1,4 @@
-\name{starsPlot}
+\name{plot-stars}
 
 
 \alias{starsPlot}
@@ -28,14 +28,17 @@ assetsBoxStatsPlot(x, par = TRUE, oma = c(0,0,0,0), mar = c(4, 4, 4, 4),
     keyOffset = c(-0.65, -0.50), main = "Assets Statistics", 
     title = "Assets", titlePosition = c(3, 3.65), 
     description = "Box Plot Statistics", descriptionPosition = c(3, 3.50), \dots)
+    
 assetsBasicStatsPlot(x, par = TRUE, oma = c(0,0,0,0), mar = c(4, 4, 4, 4), 
     keyOffset = c(-0.65, -0.50), main = "Assets Statistics", 
     title = "Assets", titlePosition = c(3, 3.65), 
     description = "Basic Returns Statistics", descriptionPosition = c(3, 3.50), \dots)
+    
 assetsMomentsPlot(x, par = TRUE, oma = c(0,0,0,0), mar = c(4, 4, 4, 4), 
     keyOffset = c(-0.65, -0.50), main = "Assets Statistics", 
     title = "Assets", titlePosition = c(3, 3.65), 
     description = "Moments Statistics", descriptionPosition = c(3, 3.50), \dots)
+    
 assetsNIGFitPlot(x, par = TRUE, oma = c(0,0,0,0), mar = c(4, 4, 4, 4), 
     keyOffset = c(-0.65, -0.50), main = "Assets Statistics", 
     title = "Assets", titlePosition = c(3, 3.65), 
@@ -133,24 +136,26 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
+   head(LPP) 
 
-## assetsBasicStatsPlot -
+## assetsBasicStatsPlot - 
+   # Create a basic Stats Plot: assetsBasicStatsPlot -
    # par(mfrow = c(1, 1))
-   assetsBasicStatsPlot(LPP, 
-     title = "", description = "")
+   assetsBasicStatsPlot(LPP, title = "", description = "")
    
 ## assetsMomentsPlot -
-   assetsMomentsPlot(LPP, 
-     title = "", description = "")
+   # Create a Moments Plot: assetsMomentsPlot -
+   assetsMomentsPlot(LPP, title = "", description = "")
    
-## assetsBoxStatsPlot -
-   assetsBoxStatsPlot(LPP, 
-     title = "", description = "")
+## assetsBoxStatsPlot - 
+   # Create a Box Stats Plot: assetsBoxStatsPlot -
+   assetsBoxStatsPlot(LPP, title = "", description = "")
 
-## assetsNIGFitPlot -
-   assetsNIGFitPlot(LPP[, 7:9], 
-     title = "", description = "")
+## assetsNIGFitPlot - 
+   # Create a NIG Fit Plot: assetsNIGFitPlot -
+   assetsNIGFitPlot(LPP[, 7:9], title = "", description = "")
 }
 
 

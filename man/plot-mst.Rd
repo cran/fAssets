@@ -1,4 +1,4 @@
-\name{treePlot}
+\name{plot-mst}
 
 \alias{treePlot}
 
@@ -73,9 +73,12 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC[, 1:6]
+   head(LPP)   
    
-## assetsTreePlot -
+## assetsTreePlot(LPP) - 
+   # Create Minimum Spanning Tree Graph: assetsTreePlot -
    # par(mfrow = c(2, 2))
    assetsTreePlot(LPP)
    # new seeds ...

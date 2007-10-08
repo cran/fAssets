@@ -1,4 +1,4 @@
-\name{histPlot}
+\name{plot-hist}
 
 
 \alias{histPlot}
@@ -76,17 +76,20 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   x = as.timeSeries(data(LPP2005REC))
-   
+   # Load Swiss Pension Fund Data:
+   x <- LPP2005REC
+   head(x)   
   
-## assetsHistPlot -
+## assetsHistPlot - 
+   # Create Histogram Plot: assetsHistPlot -
    # par(mfrow = c(2, 2))
    assetsHistPlot(x[, 1:4])
    
 ## assetsLogDensityPlot -
+   #Create Log Density Plot: assetsLogDensityPlot -
    # par(mfrow = c(1, 1))
    assetsLogDensityPlot(x[, "ALT"], estimator = "both")
-
 }
+
 
 \keyword{models}

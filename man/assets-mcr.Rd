@@ -1,4 +1,4 @@
-\name{assetsMCR}
+\name{assets-mcr}
 
 
 \alias{assetsMCR}
@@ -116,34 +116,38 @@ Scherer B., (2004);
 
 
 \examples{
-## covarRisk - 
-   # Covariance Risk
+## assetsSim -
+   # Simulate Data: 
    # Sigma = sqrt(W' COV W)
    set.seed(4711)
-   data = assetsSim(100, 6)
-   covarRisk(data)
+   DATA <- assetsSim(100, 6)
+   head(DATA)
+
+## covarRisk -
+   # Covariance Risk:
+   covarRisk(DATA)
    
 ## mcr -
    # Marginal contribution to Covariance Risk
-   # MCR = d Sigma / d W_i
-   mcr(data)
+   # MCR <- d Sigma / d W_i
+   mcr(DATA)
     
 ## mcrBeta -
    # Marginal Beta
-   # beta = MCR / Sigma
-   mcrBeta(data)
+   # beta <- MCR / Sigma
+   mcrBeta(DATA)
 
 ## riskContributions - 
    # Marginal Risk Contributions
-   # RC = Sum_i ( W_i MCR )
-   riskContributions(data)
-   sum(riskContributions(data)) - covarRisk(data)
+   # RC <- Sum_i ( W_i MCR )
+   riskContributions(DATA)
+   sum(riskContributions(DATA)) - covarRisk(DATA)
    
 ## riskBudgets -  
    # Marginal Risk Budgets
-   # RB = RC / Sigma
-   riskBudgets(data)
-   sum(riskBudgets(data)) 
+   # RB <- RC / Sigma
+   riskBudgets(DATA)
+   sum(riskBudgets(DATA)) 
 }
 
 

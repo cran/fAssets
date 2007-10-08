@@ -45,41 +45,41 @@ assetsOutliers <-
     
     # Check timeSeries Input:
     stopifnot(is.timeSeries(x))
-    tS = x
-    x = as.matrix(x)
+    tS <- x
+    x <- as.matrix(x)
     
     # Critical Values:
     n = nrow(x)
     p = ncol(x)
     if (p <= 10) pcrit = (0.240 - 0.0030 * p)/sqrt(n)
     if (p  > 10) pcrit = (0.252 - 0.0018 * p)/sqrt(n)
-    delta = qchisq(0.975, p)
+    delta <- qchisq(0.975, p)
     
     # Compute Mahalanobis Squared Distances:
-    d2 = mahalanobis(x, center, cov)
+    d2 <- mahalanobis(x, center, cov)
     
     # Detect Outliers:
-    d2ord = sort(d2)
-    dif = pchisq(d2ord, p) - (0.5:n)/n
-    i = (d2ord >= delta) & (dif > 0)
+    d2ord <- sort(d2)
+    dif <- pchisq(d2ord, p) - (0.5:n)/n
+    i <- (d2ord >= delta) & (dif > 0)
     if (sum(i) == 0) alfan = 0 else alfan = max(dif[i])
     if (alfan < pcrit) alfan = 0
     if (alfan > 0) cn = max(d2ord[n-ceiling(n*alfan)], delta) else cn = Inf
-    w = d2 < cn
-    m = apply(x[w, ], 2, mean)
-    c1 = as.matrix(x - rep(1, n) %*% t(m))
-    c = (t(c1) %*% diag(w) %*% c1)/sum(w)
+    w <- d2 < cn
+    m <- apply(x[w, ], 2, mean)
+    c1 <- as.matrix(x - rep(1, n) %*% t(m))
+    c <- (t(c1) %*% diag(w) %*% c1)/sum(w)
     
     # Identify Outliers:
-    outliers = (1:dim(x)[1])[!w]
+    outliers <- (1:dim(x)[1])[!w]
     if (length(outliers) == 0) {
-        outliers = NA
+        outliers <- NA
     } else {
-        names(outliers) = rownames(x)[outliers]
+        names(outliers) <- rownames(x)[outliers]
     }
     
     # Compose Result:
-    ans = list(
+    ans <- list(
         center = m, 
         cov = c, 
         cor = cov2cor(c), 

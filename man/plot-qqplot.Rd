@@ -1,4 +1,4 @@
-\name{assetsQQNormPlot}
+\name{plot-qqplot}
 
 
 \alias{assetsQQNormPlot}
@@ -57,12 +57,16 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 
 \examples{
 ## LPP2005REC -
-   LPP = as.timeSeries(data(LPP2005REC))
+   # Load Swiss Pension Fund Data:
+   LPP <- LPP2005REC
+   head(LPP) 
     
 ## assetsQQNormPlot -
+   # Create normal Quantile-Quantile Plot: 
    # par(mfrow = c(2, 2))
    assetsQQNormPlot(LPP[, 1:3])
 }
+
 
 \keyword{models}
 

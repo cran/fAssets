@@ -1,22 +1,26 @@
-\name{assetsSim}
+\name{assets-modeling}
 
 
+\alias{assetsFit}
 \alias{assetsSim}
 
 
-\title{Simulating Multivariate Asset Sets}
+\title{Modeling of Multivariate Asset Sets}
 
 
 \description{
   
-    Simulates multivariate artificial data sets of assets, 
-    from a multivariate normal, skew normal, or (skew) 
-    Student-t distribution. 
-  
+    Fits the parameters to a multivariate normal, skew normal, 
+    or (skew) Student-t distribution and allows to simulate 
+    artificial asset series.
+    
 }
     
 
-\usage{
+\usage{   
+assetsFit(x, method = c("st", "snorm", "norm"), title = NULL, 
+    description = NULL, fixed.df = NA)
+    
 assetsSim(n, dim = 2, model = list(mu = rep(0, dim), Omega = diag(dim), 
     alpha = rep(0, dim), df = Inf), assetNames = NULL) 
 }
@@ -24,14 +28,28 @@ assetsSim(n, dim = 2, model = list(mu = rep(0, dim), Omega = diag(dim),
 
 \arguments{
   
+    \item{x}{
+        a numeric matrix of returns or any other rectangular object like
+        a data.frame or a multivariate time series object which can be 
+        transformed by the function \code{as.matrix} to an object of 
+        class \code{matrix}.
+        }
     \item{n}{
         integer value, the number of data records to be simulated. 
+        }
+    \item{method}{
+        a character string, which type of distribution should be fitted?
+        \code{method="st"} denotes a multivariate skew-Student-t distribution,
+        \code{method="snorm"} a multivariate skew-Normal distribution, and
+        \code{method="norm"} a multivariate Normel distribution.  
+        By default a multivariate normal distribution will be fitted to the
+        empirical market data.
         }
     \item{dim}{
         integer value, the dimension (number of columns) of the assets 
         set.
         }
-   \item{model}{
+    \item{model}{
         a list of model parameters: \cr
         \code{mu} a vector of mean values, one for each asset series, \cr
         \code{Omega} the covariance matrix of assets, \cr
@@ -48,16 +66,55 @@ assetsSim(n, dim = 2, model = list(mu = rep(0, dim), Omega = diag(dim),
         a vector of character strings of length \code{dim} allowing
         for modifying the names of the individual assets.
         }
+    \item{title}{
+        a character string, assigning a title to an 
+        \code{"fASSETS"} object.
+        }
+    \item{description}{
+        a character string, assigning a brief description to an 
+        \code{"fASSETS"} object.
+        }
+    \item{fixed.df}{
+        either \code{NA}, the default, or a numeric value assigning the
+        number of degrees of freedom to the model. In the case that 
+        \code{fixed.df=NA} the value of \code{df} will be included in the
+        optimization process, otherwise not.
+        } 
+    \item{\dots}{
+        optional arguments to be passed.
+        }
         
 }
 
 
 \value{
   
+    \code{assetsFit()} 
+    \cr
+    returns a list with two entries, the parameters \code{param} and
+    \code{fit}. 
+    \code{param} is again alist with the fitted distributional parameters,
+    \code{param=list(mu, Omega, alpha, df}.
+    \code{fit} is a list which contains the returned values from the
+    \code{sn} fitting function. For details we refer to the manual of
+    the \code{sn} package.
+    Note that the \code{param$model} entry can be used as input to the 
+    function \code{assetsSim} for simulating a similar portfolio of 
+    assets compared with the original portfolio data.
     
     \code{assetsSim()} 
     \cr
-    returns a data.frame of simulated assets.
+    returns a signal series (S4 time Series object) of simulated assets.
+
+}
+
+
+\details{
+
+    The function \code{assetsFit} for the parameter estimation uses code 
+    based on functions from the contributed packages \code{"mtvnorm"} and 
+    \code{"sn"} for fitting data to a multivariate Normal, skew-Normal, 
+    and/or skew-Student-t distribution. 
 
 }
 
@@ -112,46 +169,34 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 }
 
 
-\seealso{
-
-    \code{MultivariateDistribution}.
-
-}
-
-
 \author{
 
     Adelchi Azzalini for R's \code{sn} package, \cr
     Torsten Hothorn for R's \code{mtvnorm} package, \cr
-    Diethelm Wuertz for the Rmetrics port.
+    Diethelm Wuertz for the Rmetrics interface.
     
 }
 
 
 \examples{
-
-## LPP -
-   # Percentual Returns:
-   LPP = 100 * as.timeSeries(data(LPP2005REC))[, 1:3]
-   colnames(LPP)
+## LPP2005REC -
+   # Load Swiss Pension Fund Data as Percentual Returns:
+   LPP <- 100 * LPP2005REC[, 1:3]
+   head(LPP)
    
 ## assetsFit -
-   # Fit a Skew-Student-t Distribution:
-   fit = assetsFit(LPP)
-   print(fit)
+   # Fit a Skew-Student-t Distribution: 
+   fit <- assetsFit(LPP)
    # Show Model Slot:
-   print(fit@model)
+   print(fit$param)
    
 ## assetsSim -
    # Simulate set with same statistical properties:
    set.seed(1953)
-   lppSim = assetsSim(n = nrow(LPP), dim = ncol(LPP), model = fit@model)
-   colnames(lppSim) <- colnames(LPP)
-   rownames(lppSim) <- rownames(LPP)
-   head(lppSim)
-   head(as.timeSeries(lppSim))
+   LPP.SIM <- assetsSim(n=nrow(LPP), dim=ncol(LPP), model=fit$param)
+   colnames(LPP.SIM) <- colnames(LPP)
+   head(LPP.SIM) 
 }
-
 
 \keyword{models}
 
