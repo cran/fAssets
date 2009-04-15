@@ -30,8 +30,8 @@
 ################################################################################
 # FUNCTION:             ASSETS SELECTION:
 #  assetsSelect          Selects individual assets from a set of assets
-#   method = "hclust"     hierarchical clustering of returns
-#   method = "kmeans"     k-means clustering of returns
+#   use = "hclust"       hierarchical clustering of returns
+#   use = "kmeans"       k-means clustering of returns
 ################################################################################
 
 
@@ -93,6 +93,7 @@ function()
     abline(h = 0, lty = 3)
     
     }
+    
     NA
 
     # Return Value:
@@ -116,12 +117,12 @@ function()
     allAssets = as.matrix(allAssets)
     head(allAssets)
 
-    # assetsSelect(x, method = c("hclust", "kmeans"), kmeans.centers = 5,
-    #   kmeans.maxiter = 10, doplot = TRUE, ...)
-    clustered = assetsSelect(t(allAssets), method = "kmeans",
-        kmeans.centers = 4, doplot = TRUE)
+    # assetsSelect(x, use = c("hclust", "kmeans"), doplot = TRUE, ...)
+    clustered = assetsSelect(t(allAssets), use = "kmeans",
+        centers = 4, doplot = TRUE)
              
     }
+    
     NA
 
     # Return Value:
@@ -139,35 +140,34 @@ function()
     
     require(cluster)
 
-
     .assetsSelect =
     function (x, k,
-    method = c("hclust", "kmeans", "agnes", "diana", "pam", "clara"),
+    use = c("hclust", "kmeans", "agnes", "diana", "pam", "clara"),
     doplot = TRUE, control = FALSE, ...)
     {
         # Settings:
         X = as.matrix(x)
-        method = match.arg(method)
+        use = match.arg(use)
 
         # Hierarchical Clustering:
-        if (method == "hclust") {
+        if (use == "hclust") {
             ans = hclust(dist(t(X)), ...)
             index = rev(ans$order)[1:k]
             if (doplot) plot(ans)
         }
-        if (method == "agnes") {
+        if (use == "agnes") {
             ans = agnes(t(X), ...)
             index = rev(ans$order)[1:k]
             if (doplot) plot(ans)
         }
-        if (method == "diana") {
+        if (use == "diana") {
             ans = diana(t(X), ...)
             index = rev(ans$order)[1:k]
             if (doplot) plot(ans)
         }
 
         # K-Means Clustering:
-        if (method == "kmeans") {
+        if (use == "kmeans") {
             ans = kmeans(x = X, centers = k, ...)
             Dist = rep(Inf, times = k)
             index = rep(NA, times = k)
@@ -186,12 +186,12 @@ function()
                 points(ans$centers, col = 1:k, pch = 8, cex = 2)
             }
         }
-        if (method == "pam") {
+        if (use == "pam") {
             ans = pam(t(X), k, ...)
             index = ans$id.med
             if (doplot) plot(ans)
         }
-        if (method == "clara") {
+        if (use == "clara") {
             ans = clara(t(X), k, ...)
             index = ans$i.med
             if (doplot) plot(ans)

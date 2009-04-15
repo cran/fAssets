@@ -18,7 +18,7 @@
 ################################################################################
 # FUNCTION:                   DESCRIPTION:
 #  assetsPairsPlot             Displays pairs of scatterplots of assets
-#  assetsCorgramPlot           Displays correlations between assets
+#  assetsCorgramPlot           Displays pairwise correlations between assets
 #  assetsCorTestPlot           Displays and tests pairwise correlations
 #  assetsCorImagePlot          Displays an image plot of a correlations
 ################################################################################
@@ -48,8 +48,12 @@ assetsPairsPlot <-
     # Settings:
     x = as.matrix(x)
 
-    # Plot:
+    # Pairs Plot:
+    # Suppress warnings for tick = 0 in ...
+    warn = options()$warn
+    options(warn = -1)
     pairs(x, ...)
+    options(warn = warn)
 
     # Return Value:
     invisible()
@@ -60,7 +64,7 @@ assetsPairsPlot <-
 
 
 assetsCorgramPlot <-
-    function(x, labels = TRUE, method = c("pie", "shade"), ...)
+    function(x, labels = TRUE, method = c(  "pie", "shade"), ...)
 {
     # A function implemented by Diethelm Wuertz
 
@@ -184,14 +188,13 @@ assetsCorTestPlot <-
 
 
 assetsCorImagePlot <-
-    function(x, labels = TRUE,
-    show = c("cor", "test"), use = c("pearson", "kendall", "spearman"),
-    abbreviate = 3, ...)
+  function(x, 
+           labels = TRUE,
+           show = c("cor", "test"), 
+           use = c("pearson", "kendall", "spearman"),
+           abbreviate = 3, ...)
 {
     # A function implemented by Diethelm Wuertz
-    #   @author Sandrine Dudoit, sandrine@stat.berkeley.edu, from "SMA" library
-    #   @author modified by Peter Carl
-    #   @author extended by Diethelm Wuertz
 
     # Description:
     #   Creates an image plot of a correlations
@@ -202,10 +205,15 @@ assetsCorImagePlot <-
     # Details:
     #   uses relative colors to indicate the strength of the pairwise
     #   correlation.
+    
+    # Authors:
+    #   Sandrine Dudoit, sandrine@stat.berkeley.edu, from "SMA" library
+    #   modified by Peter Carl
+    #   extended by Diethelm Wuertz
 
     # Example:
-    #   x = as.timeSeries(data(LPP2005REC)) 
-    #   assetsCorImagePlot(x)
+    #   x = as.timeSeries(data(LPP2005REC))
+    #   assetsCorImagePlot(x[,assetsArrange(x, "hclust")], abbreviate = 5)
 
     # FUNCTION:
 
@@ -239,10 +247,24 @@ assetsCorImagePlot <-
         stop("robust: Not Yet Implemented")
     }
 
-    # Plot Image:
-    image(x = 1:n, y = 1:n, z = corr[, n:1], col = 1:n,
-        axes = FALSE, main = "", xlab = "", ylab = "", ...)
+    
+    ## compute colors for correlation matrix:
+    corrMatrixcolors <- function (ncolors) 
+      {
+        k <- round(ncolors/2)
+        r <- c(rep(0, k), seq(0, 1, length = k))
+        g <- c(rev(seq(0, 1, length = k)), rep(0, k))
+        b <- rep(0, 2 * k)
+        res <- (rgb(r,g,b))
+        res
+      }
 
+    ## Plot Image:
+    ncolors <- 10*length(unique(as.vector(corr)))
+    image(x = 1:n, y = 1:n, z = corr[, n:1],
+          col = corrMatrixcolors(ncolors),
+          axes = FALSE, main = "", xlab = "", ylab = "", ...)
+    
     # Add Text Values:
     if (show == "cor") X = t(corr) else X = t(test)
     coord = grid2d(1:n, 1:n)
@@ -259,8 +281,8 @@ assetsCorImagePlot <-
         Names = c(
             pearson = "Pearson", kendall = "Kendall", spearman = "Spearman")
         if (show == "test") Test = "Test" else Test = ""
-        title(main =
-            paste(Names[use], "Corrleation ", Test, " Image", sep = ""))
+        title(
+            main = paste(Names[use], " Correlation ", Test, " Image", sep = ""))
         mText = paste("Method:", show)
         mtext(mText, side = 4, adj = 0, col = "grey", cex = 0.7)
     }

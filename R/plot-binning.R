@@ -17,7 +17,7 @@
 
 ################################################################################
 # FUNCTION:                   DESCRIPTION:
-#  assetsHistPairsPlot         Displays bivariate Histogram Plot
+#  assetsHistPairsPlot         Displays a bivariate histogram plot 
 ################################################################################
 
 
@@ -30,7 +30,10 @@ assetsHistPairsPlot <-
     #   Displays bivariate Histogram Plot
     
     # Arguments:
-    
+    #   x -
+    #   bins -
+    #   method -
+     
     # Example:
     #   x = 100 * as.timeSeries(data(LPP2005REC))[, c("SBI", "SPI")]
     #   assetsHistPairsPlot(x, bins = 20)
