@@ -22,7 +22,13 @@
 ################################################################################
 
 
-################################################################################
+# Rmetrics:
+#   Note that covRobust is not available on Debian as of 2009-04-28. 
+#   To run these functions under Debian/Rmetrics we have them    
+#   implemented here as a builtin.
+#   We also made modifications for tailored usage with Rmetrics. 
+
+
 # Package: robust
 # Version: 0.3-4
 # Date: 2008-07-06
@@ -41,6 +47,9 @@
 # Depends: R (>= 2.6.0), MASS, lattice, robustbase, rrcov, stats
 # Description: A package of robust methods.
 # License: GPL
+
+
+# ------------------------------------------------------------------------------
 
 
 .cov.donostah <- 

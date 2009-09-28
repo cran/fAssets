@@ -16,24 +16,59 @@
     
     
 ################################################################################
-# FUNCTION:
-#   .mst
+# FUNCTION:                 DESCRIPTION:
+#   .mst                     Minimum spanning tree
 #   .sortIndexMST
 #   .mstPlot
 #   .nsca
 ################################################################################
 
 
-################################################################################
-# mst.R (2006-11-08)
-# Minimum Spanning Tree
-# Copyright 2002-2006 Yvonnick Noel, Julien Claude, and Emmanuel Paradis
-# This file is part of the R-package `ape'.
-# See the file ../COPYING for licensing issues.
-################################################################################
+# Rmetrics:
+#   Note that covRobust is not available on Debian as of 2009-04-28. 
+#   To run these functions under Debian/Rmetrics we have them    
+#   implemented here as a builtin.
+#   We also made modifications for tailored usage with Rmetrics. 
 
 
-.mst = 
+# Package: ape
+# Version: 2.3
+# Date: 2009-03-30
+# Title: Analyses of Phylogenetics and Evolution
+# Author: Emmanuel Paradis, Ben Bolker, Julien Claude, Hoa Sien Cuong,
+#   Richard Desper, Benoit Durand, Julien Dutheil, Olivier Gascuel,
+#   Gangolf Jobb, Christoph Heibl, Daniel Lawson, Vincent Lefort,
+#   Pierre Legendre, Jim Lemon, Yvonnick Noel, Johan Nylander,
+#   Rainer Opgen-Rhein, Korbinian Strimmer, Damien de Vienne
+# Maintainer: Emmanuel Paradis <Emmanuel.Paradis@ird.fr>
+# Depends: R (>= 2.6.0)
+# Suggests: gee
+# Imports: gee, nlme, lattice
+# ZipData: no
+# Description: ape provides functions for reading, writing, plotting, and
+#   manipulating phylogenetic trees, analyses of comparative data
+#   in a phylogenetic framework, analyses of diversification and
+#   macroevolution, computing distances from allelic and nucleotide
+#   data, reading nucleotide sequences, and several tools such as
+#   Mantel's test, computation of minimum spanning tree, the
+#   population parameter theta based on various approaches,
+#   nucleotide diversity, generalized skyline plots, estimation of
+#   absolute evolutionary rates and clock-like trees using mean
+#   path lengths, non-parametric rate smoothing and penalized
+#   likelihood, classifying genes in trees using the
+#   Klastorin-Misawa-Tajima approach. Phylogeny estimation can be
+#   done with the NJ, BIONJ, and ME methods.
+# License: GPL (>= 2)
+# URL: http://ape.mpl.ird.fr/
+# Packaged: Mon Mar 30 08:46:28 2009; paradis
+# Repository: CRAN
+# Date/Publication: 2009-03-30 06:56:17
+ 
+
+# ------------------------------------------------------------------------------
+
+
+.mst <-  
 function(X)
 {
     # Description:
@@ -85,7 +120,7 @@ function(X)
 # ------------------------------------------------------------------------------
 
 
-.sortIndexMST = 
+.sortIndexMST <-  
 function(X)
 {
     # Function returning an index matrix for an increasing sort
@@ -100,7 +135,7 @@ function(X)
 # ------------------------------------------------------------------------------
 
 
-.mstPlot = 
+.mstPlot <-  
 function (x, graph = "circle", x1 = NULL, x2 = NULL, ...) 
 {
     # Description:
@@ -158,7 +193,7 @@ function (x, graph = "circle", x1 = NULL, x2 = NULL, ...)
 # ------------------------------------------------------------------------------
 
 
-.nsca = 
+.nsca <-  
 function(A)
 {
     # FUNCTION:
