@@ -1,7 +1,7 @@
-6f76cf88fea9fabd3ca573729596fe98 *ChangeLog
-b532c8ac33be92fe88e03dacf20db7e5 *DESCRIPTION
+adff068b78722ea3921d0015604b8082 *ChangeLog
+a08c0eb0e9567000fb73a131884ffe5d *DESCRIPTION
 b033a7b3f6deac4b50f65333297566bc *NAMESPACE
-21ca3984f8736b38581ea8e910ade5fb *R/assets-arrange.R
+1359e468ede8a51a1d24f656c1d704d6 *R/assets-arrange.R
 9dbed515b79c57ef6591e2c4ae112d6b *R/assets-fit.R
 0cc744f0b627b20f7c4b8ef3893323b2 *R/assets-lpm.R
 1cc90c11d4c31b171d91096e80fdbd9f *R/assets-mcr.R
@@ -37,7 +37,7 @@ b0970b505f1e0b15e1f6208cd9ff06fc *R/plot-risk.R
 e7af5f1290411e8c3a6f30e66db0d0af *R/plot-stars.R
 85854f76a2caaec474a7dcccae508ae3 *R/stats-distance.R
 489dd5049c648353724393e7dd6f2ab3 *R/zzz.Deprecated.R
-a7dc77317fdb084a267697662890a6ac *R/zzz.R
+0313c8d9c92521def68e862d7cb01f84 *R/zzz.R
 6042b9c5e5bec3ecc1b6959cd2858b64 *inst/COPYRIGHT.html
 7d215d06e1f0f0794a63a29b7a8b7935 *inst/unitTests/Makefile
 d11a67f141f4eef8cb4d3f24d66bd5d6 *inst/unitTests/runTests.R
