@@ -4,176 +4,89 @@
 \alias{assetsFit}
 \alias{assetsSim}
 
-
-\title{Modeling of Multivariate Asset Sets}
+\title{Modeling Multivariate Asset Sets}
 
 
 \description{
   
-    Fits the parameters to a multivariate normal, skew normal, 
-    or (skew) Student-t distribution and allows to simulate 
-    artificial asset series.
+    Fitting and Simulatingassets from multivariate asset sets based 
+    on modeling skew normal and related distributions.
     
 }
     
 
-\usage{   
-assetsFit(x, method = c("st", "snorm", "norm"), title = NULL, 
-    description = NULL, fixed.df = NA)
-    
-assetsSim(n, dim = 2, model = list(mu = rep(0, dim), Omega = diag(dim), 
-    alpha = rep(0, dim), df = Inf), assetNames = NULL) 
+\usage{
+assetsFit(x, method = c("st", "sn", "sc"), 
+  title=NULL, description=NULL, fixed.df=NA, \dots)
+
+assetsSim(n, method=c("st", "sn", "sc"),
+    model=list(beta=rep(0, 2), Omega=diag(2), alpha=rep(0, 2), nu=4), 
+    assetNames=NULL)
 }
 
 
 \arguments{
   
     \item{x}{
-        a numeric matrix of returns or any other rectangular object like
-        a data.frame or a multivariate time series object which can be 
-        transformed by the function \code{as.matrix} to an object of 
-        class \code{matrix}.
-        }
+        any rectangular time series object which can be converted by the 
+        function \code{as.matrix()} into a matrix object, e.g. like an 
+        object of class \code{timeSeries}, \code{data.frame}, or \code{mts}. 
+        } 
     \item{n}{
-        integer value, the number of data records to be simulated. 
+        a numeric value which represents the number of random vectors to 
+        be drawn.
         }
     \item{method}{
-        a character string, which type of distribution should be fitted?
-        \code{method="st"} denotes a multivariate skew-Student-t distribution,
-        \code{method="snorm"} a multivariate skew-Normal distribution, and
-        \code{method="norm"} a multivariate Normel distribution.  
-        By default a multivariate normal distribution will be fitted to the
-        empirical market data.
-        }
-    \item{dim}{
-        integer value, the dimension (number of columns) of the assets 
-        set.
+        a character string with the names of the supported distributions:
+        \code{sn} skew normal, \code{st} skew Student-t, and \code{sc}
+        skew Cauchy
         }
     \item{model}{
-        a list of model parameters: \cr
-        \code{mu} a vector of mean values, one for each asset series, \cr
-        \code{Omega} the covariance matrix of assets, \cr
-        \code{alpha} the skewness vector, and \cr
-        \code{df} the number of degrees of freedom which is a measure for
-            the fatness of the tails (excess kurtosis). \cr
-        For a symmetric distribution \code{alpha} is a vector of zeros.
-        For the normal distributions \code{df} is not used and set to 
-        infinity, \code{Inf}. Note that all assets have the same value 
-        for \code{df}.
-        }   
-    \item{assetNames}{
-        [assetsSim] - \cr
-        a vector of character strings of length \code{dim} allowing
-        for modifying the names of the individual assets.
-        }
-    \item{title}{
-        a character string, assigning a title to an 
-        \code{"fASSETS"} object.
-        }
-    \item{description}{
-        a character string, assigning a brief description to an 
-        \code{"fASSETS"} object.
+        a list with the model parameters.
+        \code{beta} a numeric vector, representing the location,
+        \code{Omega} a symmetric positive-definite matrix (covariance matrix),
+        \code{alpha} a numeric vector which regulates the skew of the density,
+        \code{nu} a positive value representing the degrees of freedom.
         }
     \item{fixed.df}{
-        either \code{NA}, the default, or a numeric value assigning the
-        number of degrees of freedom to the model. In the case that 
-        \code{fixed.df=NA} the value of \code{df} will be included in the
-        optimization process, otherwise not.
-        } 
-    \item{\dots}{
-        optional arguments to be passed.
+        a logical value, should the degreess of freedom fitted or held
+        fixed?
         }
-        
+    \item{title}{  
+        an optional project title.
+        }
+    \item{description}{
+        an option project desctiption.
+        }
+    \item{assetNames}{
+        a character vector with optional asset names.
+        }
+    \item{\dots}{
+        optional arguments passed to the underlying functions.
+        }
 }
 
 
 \value{
   
-    \code{assetsFit()} 
-    \cr
-    returns a list with two entries, the parameters \code{param} and
-    \code{fit}. 
-    \code{param} is again alist with the fitted distributional parameters,
-    \code{param=list(mu, Omega, alpha, df}.
-    \code{fit} is a list which contains the returned values from the
-    \code{sn} fitting function. For details we refer to the manual of
-    the \code{sn} package.
-    Note that the \code{param$model} entry can be used as input to the 
-    function \code{assetsSim} for simulating a similar portfolio of 
-    assets compared with the original portfolio data.
+    \code{assetsFit} returns the fitted parameters, \code{assetsSim}
+    returns a simulated (return) series.
     
-    \code{assetsSim()} 
-    \cr
-    returns a signal series (S4 time Series object) of simulated assets.
-
-}
-
-
-\details{
-
-    The function \code{assetsFit} for the parameter estimation uses code 
-    based on functions from the contributed packages \code{"mtvnorm"} and 
-    \code{"sn"} for fitting data to a multivariate Normal, skew-Normal, 
-    and/or skew-Student-t distribution. 
-
-}
-
-
-\references{
-
-Azzalini A. (1985);
-    \emph{A Class of Distributions Which Includes the Normal Ones},
-    Scandinavian Journal of Statistics 12, 171--178. 
-
-Azzalini A. (1986);
-    \emph{Further Results on a Class of Distributions Which Includes 
-        the Normal Ones},
-    Statistica 46, 199--208. 
-
-Azzalini A., Dalla Valle A. (1996);
-    \emph{The Multivariate Skew-normal Distribution},
-    Biometrika 83, 715--726. 
-
-Azzalini A., Capitanio A. (1999);
-    \emph{Statistical Applications of the Multivariate Skew-normal 
-        Distribution},
-    Journal Roy. Statist. Soc. B61, 579--602. 
-
-Azzalini A., Capitanio A. (2003);
-    \emph{Distributions Generated by Perturbation of Symmetry with 
-        Emphasis on a Multivariate Skew-t Distribution},
-    Journal Roy. Statist. Soc. B65, 367--389. 
-  
-Genz A., Bretz F. (1999);
-    \emph{Numerical Computation of Multivariate t-Probabilities
-        with Application to Power Calculation of Multiple Contrasts}, 
-    Journal of Statistical Computation and Simulation 63, 361--378.
-
-Genz A. (1992);
-    \emph{Numerical Computation of Multivariate Normal Probabilities},
-    Journal of Computational and Graphical Statistics 1, 141--149.
-    
-Genz A. (1993); 
-    \emph{Comparison of Methods for the Computation of Multivariate
-        Normal Probabilities},
-    Computing Science and Statistics 25, 400--405.
-    
-Hothorn T., Bretz F., Genz A. (2001);
-    \emph{On Multivariate t and Gauss Probabilities in R},
-    R News 1/2, 27--29.
-    
-Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
-    \emph{Portfolio Optimization with R/Rmetrics}, 
-    Rmetrics eBook, Rmetrics Association and Finance Online, Zurich.
-
 }
 
 
 \author{
 
-    Adelchi Azzalini for R's \code{sn} package, \cr
-    Torsten Hothorn for R's \code{mtvnorm} package, \cr
-    Diethelm Wuertz for the Rmetrics interface.
+    Diethelm Wuertz for the Rmetrics port.
+    
+}
+
+
+\references{
+
+Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
+    \emph{Portfolio Optimization with R/Rmetrics}, 
+    Rmetrics eBook, Rmetrics Association and Finance Online, Zurich.
     
 }
 
@@ -187,16 +100,20 @@ Wuertz, D., Chalabi, Y., Chen W., Ellis A. (2009);
 ## assetsFit -
    # Fit a Skew-Student-t Distribution: 
    fit <- assetsFit(LPP)
+   # Extract the Model:
+   model <- fit@fit$dp
    # Show Model Slot:
-   print(fit$param)
+   print(model)
    
 ## assetsSim -
    # Simulate set with same statistical properties:
    set.seed(1953)
-   LPP.SIM <- assetsSim(n=nrow(LPP), dim=ncol(LPP), model=fit$param)
+   LPP.SIM <- assetsSim(n=nrow(LPP), model=model)
    colnames(LPP.SIM) <- colnames(LPP)
    head(LPP.SIM) 
 }
 
+
 \keyword{models}
+
 

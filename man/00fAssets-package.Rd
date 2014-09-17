@@ -25,9 +25,9 @@
   \tabular{ll}{
     Package:    \tab fAssets\cr
     Type:       \tab Package\cr
-    Date:       \tab 2007-10-08\cr
+    Date:       \tab 2014\cr
     License:    \tab GPL Version 2 or later\cr
-    Copyright:  \tab (c) 2007 Diethelm Wuertz and Rmetrics Association\cr
+    Copyright:  \tab (c) 1999-2014 Rmetrics Association\cr
     Repository: \tab R-FORGE\cr
     URL:        \tab \url{https://www.rmetrics.org}
     }
@@ -38,7 +38,7 @@
 \keyword{models}
 
 
-\section{Introduction}{
+\section{1 Introduction}{
 
   The package \code{fAssets} was written to explore and investigate
   data sets of financial asssets
@@ -59,7 +59,7 @@
 }
 
 
-\section{Assets Selection}{
+\section{2 Assets Selection}{
 
   The assets selection chapter containts functions which arrange assets
   from a data set according to different measaures applying ideas from
@@ -76,7 +76,7 @@
    sampleArrange               Returns a re-sampled set of assets 
    statsArrange                Returns statistically rearranged column names
   }
-
+  
   In addition we have summarized and bundle of distance measure functions
   to determine the similarity or dissimilarity of individual assets from
   a set of multivariate financial return series. 
@@ -113,7 +113,7 @@
 }
 
 
-\section{Assets Covariance Robustification}{
+\section{3 Assets Covariance Robustification}{
 
   We provide several functions to compute robust measures for mean and/or
   covariance estimates which can be used for example in robustified
@@ -149,17 +149,8 @@
 }
 
 
-\section{Modelling Assets Sets and Testing for Normality}{
+\section{4 Testing Assets for Normality}{
 
-  Functions are available to fit the parameters for skew-Normal and
-  related financial return distributions. 
-
-  % assets-modelling.R
-  \preformatted{
-  assetsFit                   Fits the parameters of a set of assets
-  assetsSim                   Simulates a set of artificial assets
-  }
-  
   The multivariate Shapiro test and the E-Statistic Energy Test 
   allow to test multivariate Normality of financial returns.
   
@@ -173,43 +164,9 @@
 }
 
 
-\section{Portfolio Measures}{
-
-  The \code{fAssets} package provides selected function to compute
-  diverse risk Measure, Like VaR, CVaR, CVaR-Plus, and lambda-CVaR:
-
-  % assets-portfolio.R
-  \preformatted{
-  pfolioVaR                   Computes VaR for a portfolio of assets
-  pfolioCVaR                  Computes CVaR for a portfoluio of assets
-  pfolioCVaRplus              Computes CVaR-Plus for a portfolio of assets
-  lambdaCVaR                  Computes CVaR's atomic split value lambda
-  }
-  
-  Also some simple fund and portfolio performance measures are included: 
-  
-  % assets-portfolio.R
-  \preformatted{
-  pfolioMaxLoss               Computes maximum loss for a portfolio 
-  pfolioReturn                Computes return series for a portfolio
-  pfolioTargetReturn          Computes target return for a portfolio
-  pfolioTargetRisk            Computes target risk for a portfolio
-  pfolioHist                  Plots a histogram of portfolio returns
-  }
-  
-  The following functions compute marginal contributions to covariance
-  risk and covariance risk budgets:
-  
-  % assets-mcr.R
-  \preformatted{
-  covarRisk                   Computes covariance portfolio risk
-  mcr                         Computes marginal contribution to cov risk
-  mcrBeta                     Computes beta, the rescaled mcr to cov risk
-  riskContributions           Computes covariance risk contributions
-  riskBudgets                 Computes covariance risk budgets
-  }
-  
-  The computation of Lower partial moments is done by the follooing
+\section{5 Lower Partial Moments Measures}{
+    
+  The computation of Lower partial moments is done by the following
   two functions:
   
   % assets-lpm.R
@@ -221,7 +178,7 @@
 }
 
 
-\section{Assets Time Series and Density Plot Functions}{
+\section{6 Assets Time Series and Density Plot Functions}{
 
   Dozens of tailored plot functions are included in the \code{fAssets}
   package. This makes it very easy to visualize properties and to 
@@ -251,7 +208,7 @@
 }
 
 
-\section{Assets Dependency and Structure Plot Functions}{
+\section{7 Assets Dependency and Structure Plot Functions}{
 
 
   Corellation and similarities are another source of information about 
@@ -296,13 +253,12 @@
 }
 
 
-\author{
+\section{About Rmetrics:}{
 
-  This package was created by Diethelm Wuertz (2005). 
-  It is authored and maintained by the Rmetrics Core Team,
-  Yohan Chalabi (2010-2013) and Tobias Setz (since 2014), 
-  and Diethelm Wuertz.
-  
+    The \code{fAssets} Rmetrics package is written for educational 
+    support in teaching "Computational Finance and Financial Engineering" 
+    and licensed under the GPL.
+    
 }
 
 

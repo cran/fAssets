@@ -1,16 +1,15 @@
-################################################
-## Manual Namespace
-################################################
+################################################################################
+## Exports
+################################################################################
+exportPattern("^[^\\.]")
 
-exportPattern(".")
-import(methods)
-import(MASS)
+###############################################################################
+## Imports
+################################################################################
 import(timeDate)
 import(timeSeries)
 import(fBasics)
-import(fCopulae)
-import(sn)
+import(fMultivar)
 import(robustbase)
-import(ecodist)
-import(energy)
-import(mvnormtest)
+import(MASS)
+import(sn)
