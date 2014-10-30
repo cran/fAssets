@@ -1,11 +1,11 @@
-c42bd1a149ff0777d680cdb034ec9e37 *ChangeLog
-9980dc843afe55c63d6cc5e8b0ecc117 *DESCRIPTION
-0f487823a867085e59eca822d67bb506 *NAMESPACE
+d64e9c04d3ae9a929c64e3f01338c06e *ChangeLog
+9b69abb8205f0fa62f2fc739981a29bb *DESCRIPTION
+a830a4be71a2342f52e769c0e12b7fa2 *NAMESPACE
 27298ff70f98d5ebb0740c2994d9f555 *R/assets-arrange.R
 8ca18680030776ed0e75d416fa24741f *R/assets-distance.R
 911b15b0d0dcfd529c6702574ea9d550 *R/assets-lpm.R
 23daab36485f2a87ba3e468fc5713425 *R/assets-meancov.R
-b4eadc1c8c74f6d180a9cfb8e9087dd6 *R/assets-modeling.R
+c39c3fb1fc53b42c82c262b3e5129c85 *R/assets-modeling.R
 9a4ba1e59c01ab0915cfe1c57c7772a0 *R/assets-outliers.R
 066fce78914e78ef802e7efb692df2a0 *R/assets-selection.R
 7669db9310cc70db9a9d4e4232068778 *R/assets-testing.R
@@ -23,7 +23,7 @@ e1c46bf82a06f10dd00dbce41bfff18c *R/plot-boxplot.R
 d3b3444028cb6d9d8778792a885a3bbc *R/plot-ellipses.R
 49c1bd73d830afddc26e58da65f4e39c *R/plot-hist.R
 19003188473f404343e50495fb1824f9 *R/plot-mst.R
-e78a8f8420c1b1d1292155fd6904fd83 *R/plot-pairs.R
+79950eadee82e84d6bcf95b99e994c3d *R/plot-pairs.R
 4064e22c8c4cd03c96143a09ebf1d863 *R/plot-panels.R
 a5934ed8b6321b4c5a83bec55322563e *R/plot-qqplot.R
 f9248cd6b9690b88aea83d6c04d08a44 *R/plot-risk.R
@@ -48,7 +48,7 @@ c2e699f81384f4565ac77bf4d4b26299 *man/plot-binning.Rd
 427fd7ea0655ae8ba16d675056c735b4 *man/plot-ellipses.Rd
 e0b1821e1d174fafbf28f01c95a0f0dd *man/plot-hist.Rd
 b01946bfa5b3966f0b248f88aae3363a *man/plot-mst.Rd
-01ecf2d3262d7e00da0e75a7fdf2ef8e *man/plot-pairs.Rd
+c5c80fbfe22a80af169257ded9c14ea8 *man/plot-pairs.Rd
 f89da1a1ed788e5db7d2b9aa5473afca *man/plot-qqplot.Rd
 faf1609e477041fc0ff4c3fe223a1505 *man/plot-risk.Rd
 61d9acf9bb755c4aa84abad40d5ae388 *man/plot-series.Rd
