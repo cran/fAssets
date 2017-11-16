@@ -1,6 +1,6 @@
-d64e9c04d3ae9a929c64e3f01338c06e *ChangeLog
-9b69abb8205f0fa62f2fc739981a29bb *DESCRIPTION
-a830a4be71a2342f52e769c0e12b7fa2 *NAMESPACE
+74b75e4944ac302a92b56467a3df1551 *ChangeLog
+1a59acf81d1a32f23e783ab5392328d7 *DESCRIPTION
+3428b506e1067de21c5dd528872e9bdb *NAMESPACE
 27298ff70f98d5ebb0740c2994d9f555 *R/assets-arrange.R
 8ca18680030776ed0e75d416fa24741f *R/assets-distance.R
 911b15b0d0dcfd529c6702574ea9d550 *R/assets-lpm.R
@@ -13,13 +13,13 @@ c39c3fb1fc53b42c82c262b3e5129c85 *R/assets-modeling.R
 f573257a8fc7e6eb3ebe8b64eacc0ce2 *R/builtin-arwMvoutlier.R
 2687ac3481ccf55f8361ab7b9b6ae28a *R/builtin-corpcor.R
 8b9c08b997e7e0d830ab7296cbc8eea4 *R/builtin-corrgram.R
-ac6299cdfe8467717028c284c69da265 *R/builtin-covRobust.R
-9889bc2ba9be634a2b9f29f3f9a682fb *R/builtin-donostahRobust.R
+d702a3354cc48e68c1674079c2bb8081 *R/builtin-covRobust.R
+c93cfc6d1623ed30f3a1170c3bf6eb2b *R/builtin-donostahRobust.R
 2bdfd75a42e5b859192efe652be34239 *R/builtin-mstApe.R
 5b4262591b2e4419a100a0a8ba39a029 *R/builtin-rmtTawny.R
 d3dd2d5cd9e37484c6e52bd031e7ed10 *R/builtin-shrinkTawny.R
 edf613a305d78b89e6294898bdb16660 *R/plot-binning.R
-e1c46bf82a06f10dd00dbce41bfff18c *R/plot-boxplot.R
+9c766f829b90b69e9dfcbda3f2fae067 *R/plot-boxplot.R
 d3b3444028cb6d9d8778792a885a3bbc *R/plot-ellipses.R
 49c1bd73d830afddc26e58da65f4e39c *R/plot-hist.R
 19003188473f404343e50495fb1824f9 *R/plot-mst.R
@@ -30,7 +30,7 @@ f9248cd6b9690b88aea83d6c04d08a44 *R/plot-risk.R
 7e39197b96d538c1c44fbdcab39e7773 *R/plot-series.R
 1e181f17f9bf22e59402bbd3153632eb *R/plot-similarity.R
 cfa430ac81cdf0f1db84157a1bf42fa0 *R/plot-stars.R
-36e56cc83d68f661638c800e572b117d *R/zzz.R
+b95a38e20221800aefac1cc81f5d6772 *R/zzz.R
 19315d041e09c67af95239453eeb0fc4 *inst/obsolete/a-class-fASSETS.R
 f6f43f41665281290fcce79bd0550176 *inst/obsolete/a-class-fASSETS.Rd
 b2b47607848aeeade01121eb71e80507 *inst/obsolete/assets-modeling.Rd
